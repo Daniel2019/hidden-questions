@@ -1,0 +1,72 @@
+<app-navbar />
+
+<div class="page-content">
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-value">{{ temas().length }}</div>
+      <div class="stat-label">Temas criados</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">{{ temasAtivos() }}</div>
+      <div class="stat-label">Temas ativos</div>
+    </div>
+  </div>
+
+  <div class="dashboard-header">
+    <h2>Meus Temas</h2>
+    <p-button label="Novo Tema" icon="pi pi-plus" (click)="abrirModal()" styleClass="desktop-new-btn" />
+  </div>
+
+  @if (carregando()) {
+    <div class="loading-state">
+      <p-progressSpinner strokeWidth="3" />
+    </div>
+  } @else if (erro()) {
+    <div class="empty-state">
+      <i class="pi pi-exclamation-triangle"></i>
+      <h3>Erro ao carregar temas</h3>
+      <p-button label="Tentar novamente" icon="pi pi-refresh" severity="secondary" [outlined]="true" (click)="carregarTemas()" />
+    </div>
+  } @else if (temas().length === 0) {
+    <div class="empty-state">
+      <i class="pi pi-inbox"></i>
+      <h3>Nenhum tema criado ainda</h3>
+      <p>Crie seu primeiro tema para começar a receber perguntas</p>
+      <p-button label="Criar Tema" icon="pi pi-plus" severity="secondary" [outlined]="true" (click)="abrirModal()" />
+    </div>
+  }
+
+  @for (tema of temas(); track tema.id) {
+    <a [routerLink]="['/admin/tema', tema.id]" class="tema-card">
+      <div class="tema-info">
+        <h3>{{ tema.titulo }}</h3>
+        @if (tema.descricao) {
+          <p>{{ tema.descricao }}</p>
+        }
+      </div>
+      <div class="tema-meta">
+        <p-tag [value]="tema.ativo ? 'ATIVO' : 'DESATIVADO'" [severity]="tema.ativo ? 'success' : 'secondary'" />
+        <i class="pi pi-chevron-right icon-muted"></i>
+      </div>
+    </a>
+  }
+</div>
+
+<!-- FAB mobile -->
+<p-button icon="pi pi-plus" [rounded]="true" styleClass="fab" (click)="abrirModal()" pTooltip="Novo Tema" />
+
+<!-- Modal Novo Tema -->
+<p-dialog header="Novo Tema" [(visible)]="modalVisivel" [modal]="true" styleClass="dialog-md">
+  <div class="modal-field">
+    <label>Título</label>
+    <input type="text" pInputText class="w-full" placeholder="Ex: Feedback da Sprint" [(ngModel)]="novoTema.titulo" />
+  </div>
+  <div class="modal-field">
+    <label>Descrição (opcional)</label>
+    <textarea pTextarea class="w-full" rows="3" placeholder="Descreva o tema..." [(ngModel)]="novoTema.descricao"></textarea>
+  </div>
+  <ng-template #footer>
+    <p-button label="Cancelar" severity="secondary" [text]="true" (click)="modalVisivel.set(false)" />
+    <p-button label="Criar Tema" icon="pi pi-check" (click)="criarTema()" [loading]="salvando()" />
+  </ng-template>
+</p-dialog>

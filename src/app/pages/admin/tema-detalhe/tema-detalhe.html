@@ -1,0 +1,69 @@
+<app-navbar />
+
+<div class="page-content">
+  <a routerLink="/admin" class="back-link"><i class="pi pi-arrow-left"></i> Voltar</a>
+
+  @if (tema(); as tema) {
+    <div class="tema-header">
+      <div class="tema-header-top">
+        <div>
+          <h2>{{ tema.titulo }}</h2>
+          @if (tema.descricao) {
+            <p>{{ tema.descricao }}</p>
+          }
+        </div>
+        <div class="tema-actions">
+          <p-tag [value]="tema.ativo ? 'ATIVO' : 'DESATIVADO'" [severity]="tema.ativo ? 'success' : 'secondary'" />
+          <p-button
+            [label]="tema.ativo ? 'Desativar' : 'Ativar'"
+            [severity]="tema.ativo ? 'danger' : 'success'"
+            [outlined]="true"
+            size="small"
+            [icon]="tema.ativo ? 'pi pi-ban' : 'pi pi-check'"
+            (click)="toggleAtivo()"
+          />
+        </div>
+      </div>
+      <div class="link-section">
+        <i class="pi pi-link icon-muted"></i>
+        <span class="link-text">{{ link }}</span>
+        <p-button
+          [icon]="linkCopiado() ? 'pi pi-check' : 'pi pi-copy'"
+          [label]="linkCopiado() ? 'Copiado!' : 'Copiar'"
+          severity="secondary"
+          [outlined]="true"
+          size="small"
+          styleClass="link-copy-desktop"
+          (click)="copiarLink()"
+        />
+        <p-button
+          [icon]="linkCopiado() ? 'pi pi-check' : 'pi pi-copy'"
+          [label]="linkCopiado() ? 'Link copiado!' : 'Copiar link'"
+          severity="secondary"
+          [outlined]="true"
+          size="small"
+          [fluid]="true"
+          styleClass="link-copy-mobile"
+          (click)="copiarLink()"
+        />
+      </div>
+    </div>
+
+    <h3 class="perguntas-title">Perguntas recebidas ({{ perguntas().length }})</h3>
+
+    @if (perguntas().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-comments"></i>
+        <h3>Nenhuma pergunta recebida</h3>
+        <p>Compartilhe o link do tema para receber perguntas anônimas</p>
+      </div>
+    }
+
+    @for (p of perguntas(); track p.id) {
+      <div class="pergunta-card">
+        <p>{{ p.conteudo }}</p>
+        <small><i class="pi pi-clock"></i> {{ p.criadoEm | relativeTime }}</small>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,72 @@
+{
+  "admins": [
+    {
+      "id": "1",
+      "nome": "daniel",
+      "senha": "palmeiras"
+    }
+  ],
+  "temas": [
+    {
+      "id": "a82a",
+      "titulo": "Palmeiras",
+      "descricao": "Tire dúvidas sobre o palmeiras",
+      "adminId": "1",
+      "slug": "palmeiras",
+      "ativo": false
+    },
+    {
+      "id": "6650",
+      "titulo": "a",
+      "descricao": "a",
+      "adminId": "1",
+      "slug": "a",
+      "ativo": false
+    },
+    {
+      "id": "0e41",
+      "titulo": "a",
+      "descricao": "a",
+      "adminId": "1",
+      "slug": "a",
+      "ativo": false
+    },
+    {
+      "id": "e235",
+      "titulo": "Teste",
+      "descricao": "Daniel",
+      "adminId": "1",
+      "slug": "teste",
+      "ativo": false
+    },
+    {
+      "id": "9b6a",
+      "titulo": "Teste do Daniel",
+      "descricao": "Quero fazer um teste",
+      "adminId": "1",
+      "slug": "teste-do-daniel",
+      "ativo": true
+    }
+  ],
+  "perguntas": [
+    {
+      "id": "8643",
+      "temaId": "a82a",
+      "conteudo": "Qual o melhor jogador?",
+      "criadoEm": "2026-03-19T23:16:50.128Z"
+    },
+    {
+      "id": "dc1b",
+      "temaId": "9b6a",
+      "conteudo": "O senhor consegue falar?",
+      "criadoEm": "2026-03-20T02:11:54.437Z"
+    },
+    {
+      "id": "42f5",
+      "temaId": "9b6a",
+      "conteudo": "a",
+      "criadoEm": "2026-03-20T02:22:17.218Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -1,0 +1,23 @@
+<div class="login-page">
+  <div class="login-card">
+    <div class="login-title">hidden-questions</div>
+    <div class="login-subtitle">Faça login para gerenciar seus temas</div>
+
+    @if (erro()) {
+      <p-message severity="error" [text]="erro()" class="w-full" />
+      <div class="spacer"></div>
+    }
+
+    <div class="login-field">
+      <label>Nome</label>
+      <input type="text" pInputText class="w-full" placeholder="Seu nome de admin" [(ngModel)]="nome" />
+    </div>
+
+    <div class="login-field">
+      <label>Senha</label>
+      <p-password class="w-full" [toggleMask]="true" [feedback]="false" [(ngModel)]="senha" placeholder="Sua senha" [fluid]="true" (keyup.enter)="entrar()" />
+    </div>
+
+    <p-button label="Entrar" class="w-full" [fluid]="true" icon="pi pi-sign-in" (click)="entrar()" [loading]="carregando()" />
+  </div>
+</div>

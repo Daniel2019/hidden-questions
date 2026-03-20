@@ -1,0 +1,43 @@
+<app-navbar />
+
+<div class="page-content">
+  <a routerLink="/admin" class="back-link"><i class="pi pi-arrow-left"></i> Voltar</a>
+
+  <div class="config-card">
+    <h3><i class="pi pi-user"></i> Alterar Nome</h3>
+
+    @if (msgNome()) {
+      <p-message severity="success" [text]="msgNome()" class="w-full" />
+      <div class="spacer"></div>
+    }
+
+    <div class="config-field">
+      <label>Nome</label>
+      <input type="text" pInputText class="w-full" [(ngModel)]="novoNome" />
+    </div>
+    <div class="btn-row">
+      <p-button label="Salvar" icon="pi pi-check" size="small" (click)="salvarNome()" />
+    </div>
+  </div>
+
+  <div class="config-card">
+    <h3><i class="pi pi-lock"></i> Alterar Senha</h3>
+
+    @if (msgSenha()) {
+      <p-message [severity]="msgSenhaTipo()" [text]="msgSenha()" class="w-full" />
+      <div class="spacer"></div>
+    }
+
+    <div class="config-field">
+      <label>Nova Senha</label>
+      <p-password class="w-full" [toggleMask]="true" [feedback]="false" [(ngModel)]="novaSenha" [fluid]="true" />
+    </div>
+    <div class="config-field">
+      <label>Confirmar Senha</label>
+      <p-password class="w-full" [toggleMask]="true" [feedback]="false" [(ngModel)]="confirmarSenha" [fluid]="true" />
+    </div>
+    <div class="btn-row">
+      <p-button label="Salvar" icon="pi pi-check" size="small" (click)="salvarSenha()" />
+    </div>
+  </div>
+</div>

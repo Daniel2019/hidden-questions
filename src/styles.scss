@@ -1,0 +1,15 @@
+/* PrimeNG & PrimeIcons */
+@use "primeicons/primeicons.css";
+
+/* Global light mode */
+html {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #374151;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}

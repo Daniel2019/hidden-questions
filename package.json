@@ -1,0 +1,52 @@
+{
+  "name": "hidden-questions",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "api": "json-server --watch db.json --port 3000",
+    "build": "ng build",
+    "build:ghpages": "ng build --base-href /hidden-questions/ && cp dist/hidden-questions/browser/index.html dist/hidden-questions/browser/404.html && touch dist/hidden-questions/browser/.nojekyll",
+    "deploy": "npm run build:ghpages && npx angular-cli-ghpages --dir=dist/hidden-questions/browser --no-silent",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "dependencies": {
+    "@angular/animations": "^21.2.5",
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@primeng/themes": "^21.0.4",
+    "primeicons": "^7.0.0",
+    "primeng": "^21.1.3",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.3",
+    "@angular/cli": "^21.1.3",
+    "@angular/compiler-cli": "^21.1.0",
+    "angular-cli-ghpages": "^3.0.2",
+    "jsdom": "^27.1.0",
+    "json-server": "^1.0.0-beta.13",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}

@@ -1,0 +1,51 @@
+<div class="public-page">
+  @if (naoEncontrado()) {
+    <div class="public-card">
+      <div class="empty-state">
+        <i class="pi pi-exclamation-triangle"></i>
+        <h3>Tema não encontrado</h3>
+        <p>O link que você acessou não existe ou foi removido.</p>
+      </div>
+    </div>
+  } @else if (tema() === null) {
+    <div class="public-card">
+      <div class="loading-state">
+        <p-progressSpinner strokeWidth="3" />
+      </div>
+    </div>
+  } @else if (!tema()!.ativo) {
+    <div class="public-card">
+      <div class="empty-state">
+        <i class="pi pi-ban"></i>
+        <h3>Tema desativado</h3>
+        <p>Não é possível enviar perguntas no momento.</p>
+      </div>
+    </div>
+  } @else if (enviado()) {
+    <div class="public-card">
+      <div class="public-success">
+        <i class="pi pi-check-circle"></i>
+        <h3>Pergunta enviada!</h3>
+        <p>Sua pergunta foi enviada anonimamente.</p>
+        <p-button label="Enviar outra pergunta" icon="pi pi-refresh" severity="secondary" [outlined]="true" (click)="enviado.set(false)" />
+      </div>
+      <p class="powered-by">powered by <strong>hidden-questions</strong></p>
+    </div>
+  } @else {
+    <div class="public-card">
+      <h2>{{ tema()!.titulo }}</h2>
+      @if (tema()!.descricao) {
+        <p class="desc">{{ tema()!.descricao }}</p>
+      }
+
+      <div class="public-field">
+        <label>Sua pergunta (anônima)</label>
+        <textarea pTextarea class="w-full" rows="4" placeholder="Digite sua pergunta aqui..." [(ngModel)]="conteudo"></textarea>
+      </div>
+
+      <p-button label="Enviar Pergunta" icon="pi pi-send" class="w-full" [fluid]="true" (click)="enviarPergunta()" [loading]="enviando()" />
+
+      <p class="powered-by">powered by <strong>hidden-questions</strong></p>
+    </div>
+  }
+</div>
